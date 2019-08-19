@@ -23,6 +23,10 @@
             Slide
         },
         props: {
+            aspectRatio: {
+                type: Boolean,
+                default: true
+            },
             count: {
                 type: [Number, String],
                 default: 0
@@ -161,6 +165,9 @@
             slideHeight () {
                 const sw = parseInt(this.width, 10) + (parseInt(this.border, 10) * 2)
                 const sh = parseInt(parseInt(this.height) + (this.border * 2), 10)
+
+                if (!this.aspectRatio) return sh
+
                 const ar = this.calculateAspectRatio(sw, sh)
 
                 return this.slideWidth / ar
